@@ -137,8 +137,9 @@ A análise final também discute:
 ```text
 lista-01-metodos-distancia/
 │
-├── Lista_Exercicios_01_IA_Alane_Damasceno.ipynb
-└── README.md
+├── README.md
+├── lista_01_knn_kmeans_dbscan.ipynb
+└── lista_exercicios_01.pdf
 ```
 
 O notebook contém as implementações, execuções, tabelas, visualizações e análises desenvolvidas durante a atividade.
