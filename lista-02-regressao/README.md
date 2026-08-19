@@ -177,7 +177,8 @@ Essas análises permitem relacionar os resultados numéricos obtidos com o funci
 lista-02-regressao/
 │
 ├── Lista_Exercicios_02_IA_Alane_Damasceno.ipynb
-└── README.md
+├── README.md
+└── lista02_regressao_numpy_torch.pdf
 ```
 
 O notebook contém os códigos, execuções, resultados, comparações e análises desenvolvidas durante a atividade.
