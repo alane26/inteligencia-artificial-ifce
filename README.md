@@ -6,7 +6,7 @@ Repositório destinado à organização das **atividades, listas de exercícios,
 
 Ao longo da disciplina, este repositório será utilizado para registrar implementações práticas, experimentos e estudos relacionados aos principais conceitos e técnicas de Inteligência Artificial.
 
-Os códigos são desenvolvidos principalmente em **Python**, utilizando ferramentas como **NumPy**, **PyTorch**, **Jupyter Notebook**, **Google Colab** e **scikit-learn**.
+Os códigos são desenvolvidos principalmente em **Python**, utilizando ferramentas como **NumPy**, **PyTorch**, **Pandas**, **Matplotlib**, **scikit-learn**, **Jupyter Notebook** e **Google Colab**.
 
 ---
 
@@ -16,7 +16,8 @@ Os códigos são desenvolvidos principalmente em **Python**, utilizando ferramen
 | --- | --- | :---: |
 | [Lista 01](./lista-01-metodos-distancia/) | Métodos baseados em distância — k-NN, k-Means e DBSCAN | ✅ |
 | [Lista 02](./lista-02-regressao/) | Regressão Linear — Equação Normal, MSE e RMSE | ✅ |
-| Lista 03 | Em breve | ⏳ |
+| [Lista 03](./lista-03-perceptron/) | Perceptron de Rosenblatt — OR, AND, XOR e Iris | ✅ |
+| [Lista 04](./lista-04/) | Próxima atividade | ⏳ |
 
 ---
 
@@ -81,8 +82,6 @@ Para os experimentos foi utilizada a base pública **Auto MPG**, com o objetivo 
 
 ### 🔬 Experimentos
 
-Também foram realizadas análises envolvendo:
-
 - regressão com e sem padronização;
 - comparação dos pesos encontrados;
 - identificação da feature mais influente;
@@ -94,12 +93,60 @@ Também foram realizadas análises envolvendo:
 
 ---
 
+## 📌 Lista 03 — Implementando o Perceptron
+
+A terceira lista aborda a implementação **do zero, em NumPy**, do **Perceptron de Rosenblatt**, explorando sua regra de aprendizado e sua relação com problemas linearmente separáveis.
+
+### 🟠 OR e AND
+
+- implementação manual do algoritmo;
+- função de ativação degrau;
+- atualização dos pesos e do bias;
+- registro dos erros por época;
+- análise da convergência;
+- construção das fronteiras de decisão;
+- comparação entre OR e AND.
+
+### ❌ XOR
+
+- treinamento durante 50 épocas;
+- experimento com 1000 épocas;
+- análise da acurácia;
+- observação da oscilação dos erros;
+- estudo da não separabilidade linear;
+- relação com o Teorema de Convergência do Perceptron.
+
+### 🌸 Iris
+
+- classificação entre setosa e versicolor;
+- utilização do comprimento e largura da pétala;
+- visualização das classes;
+- treinamento com o Perceptron implementado manualmente;
+- análise dos pesos e bias;
+- acurácia final;
+- construção da fronteira de decisão.
+
+A atividade também relaciona as limitações de um único Perceptron à necessidade de modelos mais complexos, como **Redes Neurais Multicamadas (MLP)**.
+
+📂 **[Acessar Lista 03](./lista-03-perceptron/)**
+
+---
+
+## 📌 Lista 04 — Próxima atividade
+
+A pasta da próxima atividade já está preparada e será atualizada conforme o desenvolvimento da disciplina.
+
+📂 **[Acessar Lista 04](./lista-04/)**
+
+---
+
 ## 🛠️ Tecnologias
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)
 ![Google Colab](https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
@@ -121,6 +168,14 @@ inteligencia-artificial-ifce/
 │   ├── Lista_Exercicios_02_IA_Alane_Damasceno.ipynb
 │   └── lista02_regressao_numpy_torch.pdf
 │
+├── lista-03-perceptron/
+│   ├── README.md
+│   ├── Lista_Perceptron_IA_Alane_Damasceno.ipynb
+│   └── lista_perceptron.pdf
+│
+├── lista-04/
+│   └── README.md
+│
 ├── trabalhos/
 │
 ├── projetos/
@@ -136,7 +191,8 @@ A estrutura será atualizada ao longo da disciplina conforme novas listas, traba
 
 - [x] Lista 01 — Métodos Baseados em Distância
 - [x] Lista 02 — Regressão Linear com NumPy e PyTorch
-- [ ] Lista 03
+- [x] Lista 03 — Implementando o Perceptron
+- [ ] Lista 04 — Próxima atividade
 - [ ] Próximas atividades
 - [ ] Trabalhos
 - [ ] Projetos
