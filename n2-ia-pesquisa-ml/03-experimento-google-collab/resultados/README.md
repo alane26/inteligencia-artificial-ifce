@@ -32,8 +32,6 @@ Os arquivos podem ser organizados em três categorias:
 | Categoria | Conteúdo |
 |---|---|
 | **Tabelas CSV** | Métricas dos modelos, limiares avaliados e resultados da validação |
-| **Gráficos** | Curvas ROC e comportamento das métricas em função dos limiares |
-| **Matrizes de confusão** | Distribuição de verdadeiros e falsos positivos e negativos |
 
 Os nomes e a quantidade de arquivos devem corresponder à exportação efetivamente realizada no notebook.
 
