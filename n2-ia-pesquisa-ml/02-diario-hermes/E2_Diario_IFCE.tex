@@ -1,0 +1,87 @@
+\documentclass[article,12pt,oneside,a4paper,english,brazil,sumario=tradicional]{abntex2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage[abnt-emphasize=bf,abnt-and-type=e,alf]{abntex2cite}
+\setsecheadstyle{\bfseries\normalsize\uppercase}
+\setsubsecheadstyle{\bfseries\normalsize}
+% Exigência específica da atividade N2: A4, 2,5 cm, espaçamento simples.
+\setlrmarginsandblock{2.5cm}{2.5cm}{*}
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+\checkandfixthelayout
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\SingleSpacing
+\setlength{\afterchapskip}{0pt}
+\setlength{\beforechapskip}{0pt}
+\setlength{\beforesecskip}{0.55\baselineskip}
+\setlength{\aftersecskip}{0.25\baselineskip}
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing
+\thispagestyle{empty}
+\begin{center}
+\uppercase{\bfseries Diário de Pesquisa -- Deep Research com Hermes Agent}\\[7pt]
+\uppercase{\bfseries Etapa N2 -- Registro do processo e triagem bibliográfica}
+\end{center}
+\begin{flushright}
+Alane Damasceno Moreno\\
+{\small Bacharelado em Ciência da Computação -- IFCE, Campus Aracati}\\
+{\small Inteligência Artificial -- Prof. Gabriel Duarte -- 22/10/2026}
+\end{flushright}
+\section{OBJETIVO E RASTREABILIDADE}
+
+Documentar a configuração do agente, os comandos e o levantamento bibliográfico realizado. O Hermes foi empregado como instrumento de busca e triagem, não como substituto da leitura crítica da autora. Este diário distingue \textit{localização de fonte}, \textit{conferência bibliográfica} e \textit{leitura integral}; estes estágios não são equivalentes.
+\section{AMBIENTE E VERIFICAÇÕES REGISTRADAS}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item Windows PowerShell; Hermes Agent instalado a partir do instalador oficial, com login Nous Portal dispensado.
+\item OpenRouter configurada com chave privada; modelo \texttt{thinkingmachines/inkling:free}; raciocínio \texttt{high}.
+\item \texttt{hermes doctor}: Python 3.14.7, OpenRouter API funcional; \texttt{web}, \texttt{browser}, \texttt{terminal}, \texttt{file}, \texttt{skills} disponíveis. Foram apontadas advertências opcionais de dependências e credenciais ausentes para serviços não usados.
+\item Teste real: o agente executou \texttt{python --version} e retornou \texttt{Python 3.14.7 (exit code 0)}. Prints originais devem ser preservados como evidências.
+\end{itemize}
+\section{PROMPT DOCUMENTADO (22/10/2026)}
+\noindent\textbf{Prompt 01 -- busca e triagem inicial.}\\
+\begin{quote}\small Estou desenvolvendo um projeto de pesquisa para a disciplina de Inteligência Artificial do IFCE. O tema é a influência do limiar de decisão na classificação de tumores malignos utilizando redes neurais artificiais. Utilize ferramentas de busca na web e a habilidade arxiv para localizar pelo menos 8 trabalhos científicos publicados preferencialmente entre 2020 e 2026 sobre classificação de câncer de mama com Machine Learning, redes neurais MLP, regressão logística, limiares de decisão, falsos negativos e avaliação por F1 e ROC-AUC. Para cada fonte, apresente título, autores, ano, DOI ou URL verificável, objetivo, metodologia, principais resultados e limitações. Diferencie fontes primárias e secundárias. Não invente referências. Caso não consiga acessar ou confirmar uma fonte, identifique-a como não verificada. Apresente uma tabela e identifique possíveis lacunas para um estudo experimental pequeno utilizando o dataset Breast Cancer Wisconsin do scikit-learn. Não escreva ainda o artigo final.\end{quote}
+\noindent\textbf{Ferramentas evidenciadas pela interface:} cinco buscas web, três páginas lidas, dois scripts executados e um arquivo editado (contagem exibida pelo Hermes). Arquivo salvo em \texttt{cache/scratch/pesquisa\_bibliografica\_ifce\_ia.md}. O resumo do agente relatou dez fontes, sendo sete primárias e três secundárias; o item 10 foi sinalizado como parcialmente verificado.
+\section{TRIAGEM DAS FONTES E DECISÕES PRELIMINARES}
+\noindent A tabela abaixo sintetiza \textit{dez fontes retornadas pelo Hermes}. ``Pré-selecionada'' não significa ainda que o texto completo tenha sido lido. A decisão definitiva de inclusão depende de leitura e conferência do conteúdo original.\\[5pt]
+\textbf{1.} Srinivasu et al. (2024) (\texttt{10.1038/s41598-024-79620-8}); \textit{Primária}. Pré-selecionada: MLP e câncer de mama; ler integralmente.\par
+\textbf{2.} Rezaeipanah e Ahmadi (2022) (\texttt{10.1093/comjnl/bxaa109}); \textit{Primária}. Reserva: MLP; verificar desenho e dataset.\par
+\textbf{3.} Ensemble MLP (2022) (\texttt{10.1080/08839514.2022.2031820}); \textit{Primária}. Reserva: foco em ensemble, não em limiar.\par
+\textbf{4.} Alsaedi e Akay (2025) (\texttt{10.3390/app15137213}); \textit{Primária}. Pré-selecionada: MLP, F1 e AUC; ler integralmente.\par
+\textbf{5.} Bamodu et al. (2026) (\texttt{10.1371/journal.pdig.0001706}); \textit{Primária}. Pré-selecionada: baseline e calibração; ano corrigido.\par
+\textbf{6.} Cheng e Yu (2025), preprint (\texttt{10.64898/2025.12.23.25342946}); \textit{Primária}. Reserva: limiar 0,5; sem revisão por pares comprovada.\par
+\textbf{7.} Rosca et al. (2026) (\texttt{10.3390/app16052226}); \textit{Secundária}. Contexto: revisão ampla, não experimento comparável.\par
+\textbf{8.} Revisão Springer (2024) (\texttt{10.1007/s11042-024-18775-y}); \textit{Secundária}. Pendente: autores e texto completo a conferir.\par
+\textbf{9.} Revisão Frontiers (2024) (\texttt{10.3389/fonc.2024.1343627}); \textit{Secundária}. Contexto: revisão ampla, pouco específica.\par
+\textbf{10.} Residual--MLP (2024) (\texttt{10.1016/j.cmpb.2024.108101}); \textit{Primária}. Não selecionar por ora: verificação parcial.\par
+\section{CRITÉRIOS DE INCLUSÃO E DESCARTE}
+Foram priorizadas fontes com DOI rastreável, relação explícita com a base Wisconsin, MLP, Regressão Logística, métricas ou limiar de decisão. Revisões amplas são úteis para contextualização, mas não substituem experimentos originais. O estudo de mamografia por residual--MLP foi reservado por falta de conferência integral e menor correspondência com dados tabulares. O preprint medRxiv será tratado com cautela por não possuir revisão por pares comprovada neste registro.
+\section{SÍNTESE CRÍTICA E PRÓXIMOS PASSOS}
+O levantamento sugere uma pergunta operacional: como a escolha do limiar entre 0,1 e 0,9 altera F1, recall e falsos negativos em MLP e Regressão Logística sob mesma divisão e padronização? Isso constitui \textit{um recorte entre as fontes consultadas}, e não demonstra ausência absoluta desse experimento na literatura. O protocolo proposto usa \texttt{load\_breast\_cancer}, classes recodificadas para maligno = 1, \texttt{Pipeline} sem vazamento, validação cruzada no treino, ROC-AUC e avaliação única em teste reservado.
+\section{CONFERÊNCIA E MATERIAIS COMPROBATÓRIOS}
+Este diário registra os comandos, o prompt e as decisões preliminares. A conferência das referências citadas no E1 deverá ser concluída e documentada pela autora antes da entrega. As capturas abaixo devem ser inseridas sem expor chaves de API, tokens ou credenciais.
+
+\clearpage
+\section{EVIDÊNCIAS DA INSTALAÇÃO E DO FUNCIONAMENTO}
+\noindent\textbf{Figura 1 -- Instalação do Hermes Agent no PowerShell.}\\[-2pt]
+\begin{center}\fbox{\parbox[c][5.0cm][c]{0.88\textwidth}{\centering INSERIR PRINT DA INSTALAÇÃO\\[5pt]\footnotesize Substituir este espaço por imagem no Overleaf}}\end{center}
+\noindent\textbf{Figura 2 -- Diagnóstico do ambiente (\texttt{hermes doctor}).}\\[-2pt]
+\begin{center}\fbox{\parbox[c][5.0cm][c]{0.88\textwidth}{\centering INSERIR PRINT DO DIAGNÓSTICO\\[5pt]\footnotesize Mostrar conexão OpenRouter e ferramentas disponíveis}}\end{center}
+
+\clearpage
+\section{EVIDÊNCIAS DO USO DO AGENTE NA PESQUISA}
+\noindent\textbf{Figura 3 -- Execução de comando real no terminal (\texttt{python --version}).}\\[-2pt]
+\begin{center}\fbox{\parbox[c][5.0cm][c]{0.88\textwidth}{\centering INSERIR PRINT DO TESTE DE FERRAMENTA\\[5pt]\footnotesize Comando executado e resultado}}\end{center}
+\noindent\textbf{Figura 4 -- Resultado da pesquisa bibliográfica no Hermes.}\\[-2pt]
+\begin{center}\fbox{\parbox[c][5.0cm][c]{0.88\textwidth}{\centering INSERIR PRINT DO DEEP RESEARCH\\[5pt]\footnotesize Resumo da pesquisa e arquivo Markdown produzido}}\end{center}
+
+\section{ANEXOS DIGITAIS SUGERIDOS}
+\noindent Guardar como evidência adicional: log da sessão do Hermes; arquivo original \texttt{pesquisa\_bibliografica\_ifce\_ia.md}; registros de acesso/leitura das fontes. Incluir no PDF somente o que for relevante à rastreabilidade do trabalho.
+
+\end{document}
