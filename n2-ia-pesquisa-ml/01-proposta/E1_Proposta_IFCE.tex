@@ -1,0 +1,143 @@
+\documentclass[article,11pt,oneside,a4paper,english,brazil,sumario=tradicional]{abntex2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{needspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[abnt-emphasize=bf,abnt-and-type=e,alf]{abntex2cite}
+\setsecheadstyle{\bfseries\normalsize\uppercase}
+\setsubsecheadstyle{\bfseries\normalsize}
+\setlrmarginsandblock{2.5cm}{2.5cm}{*}
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+\checkandfixthelayout
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\SingleSpacing
+\setlength{\parskip}{1.3pt}
+\renewcommand{\arraystretch}{1.13}
+\setlength{\tabcolsep}{7pt}
+\setlength{\afterchapskip}{0pt}
+\setlength{\beforechapskip}{0pt}
+\setlength{\beforesecskip}{0.59\baselineskip}
+\setlength{\aftersecskip}{0.27\baselineskip}
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing
+\thispagestyle{empty}
+\begin{center}
+\uppercase{\bfseries Influência do limiar de decisão na classificação de tumores mamários: comparação entre MLP e Regressão Logística}\\[8pt]
+\uppercase{\bfseries Influence of decision thresholds on breast tumor classification: MLP versus Logistic Regression}
+\end{center}
+\begin{flushright}
+Alane Damasceno Moreno\\
+{\small Bacharelado em Ciência da Computação -- IFCE, Campus Aracati}\\
+{\small Inteligência Artificial -- Prof. Gabriel Duarte}
+\end{flushright}
+\vspace{-0.2em}
+\section{PROBLEMA DE PESQUISA}
+
+A classificação supervisionada de tumores mamários pode apresentar elevado desempenho global e, ainda assim, deixar de identificar parte dos casos malignos. Nesses problemas, falsos negativos merecem análise específica, pois a acurácia isolada não expressa a distribuição dos erros. O conjunto Breast Cancer Wisconsin Diagnostic, disponibilizado no \textit{scikit-learn}, fornece dados públicos para experimentos controlados com 569 amostras e 30 atributos.
+
+Srinivasu et al. (2024) investigaram uma combinação de CatBoost e MLP, enquanto Bamodu, Nezam e Chung (2026) compararam oito algoritmos e discutiram interpretabilidade e calibração de probabilidades. A pergunta deste projeto é: \textit{como a variação do limiar de decisão afeta o recall, o F1-score e os falsos negativos de uma MLP e de uma Regressão Logística, sob o mesmo protocolo experimental?}
+
+\section{JUSTIFICATIVA}
+O limiar padrão de 0,5 não necessariamente produz a melhor relação entre sensibilidade e falsos positivos em todas as tarefas. Comparar decisões obtidas a partir das mesmas probabilidades permite evidenciar a diferença entre qualidade de ordenação (ROC-AUC) e classificação em um ponto operacional. O estudo utiliza ferramentas públicas, sem pretender criar um sistema de diagnóstico clínico. A lacuna é tratada como \textit{recorte analítico entre os estudos selecionados}, não como alegação de ineditismo absoluto.
+
+\section{OBJETIVO GERAL}
+Analisar o efeito da variação do limiar de decisão sobre a identificação de tumores malignos em modelos de Regressão Logística e MLP treinados no mesmo conjunto de dados.
+
+\section{OBJETIVOS ESPECÍFICOS}
+\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=3pt]
+\item Implementar pipelines equivalentes de treinamento e validação para Regressão Logística e MLP.
+\item Comparar limiares de 0,1 a 0,9 quanto a falsos negativos, falsos positivos, recall e F1-score.
+\item Avaliar ROC-AUC e matrizes de confusão, discutindo o compromisso entre sensibilidade e precisão.
+\item Identificar limitações metodológicas e possibilidades de replicação do estudo.
+\end{enumerate}
+
+\begin{table}[!ht]
+\centering
+\caption{Síntese do problema e das decisões de pesquisa}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.4cm}X@{}}
+\toprule
+Dimensão & Delimitação adotada \\
+\midrule
+Problema & Efeito do limiar de decisão sobre a identificação de malignidade. \\
+Comparação & Regressão Logística (referência) e MLP (modelo neural). \\
+Foco analítico & Recall, F1-score e número de falsos negativos. \\
+Escopo & Estudo acadêmico com base pública, sem aplicação clínica. \\
+\bottomrule
+\end{tabularx}
+\par\vspace{2mm}{\footnotesize Fonte: elaboração própria (2026).}
+\end{table}
+
+\section{METODOLOGIA}
+Será realizado um estudo quantitativo, aplicado e experimental, em Python no Google Colab (CPU), com \textit{scikit-learn}. Os dados públicos Breast Cancer Wisconsin Diagnostic (UCI, disponibilizados pelo \textit{scikit-learn}) serão carregados por \texttt{load\_breast\_cancer}, com 569 observações, 30 atributos e duas classes; serão verificadas as condições de licença e citação na fonte original. A codificação será ajustada para 1 = maligno (classe positiva) e 0 = benigno. A divisão treino--teste será estratificada (80/20, semente 42). O \texttt{StandardScaler} será ajustado apenas ao treino, dentro de \textit{Pipeline}, prevenindo vazamento de dados. A Regressão Logística será o \textit{baseline}; a MLP será o comparador neural. A avaliação incluirá validação cruzada estratificada de cinco partições no treinamento.
+
+Serão obtidas probabilidades fora da amostra na validação cruzada para descrever os limiares de 0,1 a 0,9. O critério exploratório de seleção será o maior F1 da classe maligna no treino, com desempate pelo menor limiar; o conjunto de teste permanecerá reservado para uma única avaliação final dessa regra. Serão apresentadas matriz de confusão, falsos negativos/positivos, recall, precisão, F1-score e ROC-AUC. Será comparado o limiar padrão ao selecionado, sem interpretação clínica.
+
+\begin{table}[!ht]
+\centering
+\caption{Protocolo experimental previsto}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.4cm}X@{}}
+\toprule
+Componente & Procedimento \\
+\midrule
+Base e divisão & Wisconsin Diagnostic: 569 amostras, 30 atributos; treino/teste estratificado 80/20 (semente 42). \\
+Pré-processamento & Padronização dentro do \textit{Pipeline}, ajustada apenas aos dados de treinamento. \\
+Modelos & \texttt{LogisticRegression} e \texttt{MLPClassifier}. \\
+Validação & Cinco partições estratificadas nos dados de treino. \\
+Análise & Limiares de 0,1 a 0,9; matriz de confusão, precisão, recall, F1 e ROC-AUC. \\
+Ambiente & Python, \textit{scikit-learn} e Google Colab (CPU). \\
+\bottomrule
+\end{tabularx}
+\par\vspace{2mm}{\footnotesize Fonte: elaboração própria (2026).}
+\end{table}
+
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[>=Stealth, font=\footnotesize,
+ stage/.style={draw=black!55, rounded corners=2pt, minimum height=0.55cm, align=center, inner sep=4pt}]
+\node[stage, text width=2.5cm] (a) {Base Wisconsin\\569 amostras};
+\node[stage, text width=2.5cm, right=0.28cm of a] (b) {Treino/teste\\estratificado};
+\node[stage, text width=2.5cm, right=0.28cm of b] (c) {Pipeline\\LR e MLP};
+\node[stage, text width=2.5cm, right=0.28cm of c] (d) {Limiares e\\métricas};
+\draw[->, thick] (a)--(b);
+\draw[->, thick] (b)--(c);
+\draw[->, thick] (c)--(d);
+\end{tikzpicture}
+\caption{Fluxo previsto para o experimento comparativo.}
+\par\vspace{1mm}{\footnotesize Fonte: elaboração própria (2026).}
+\end{figure}
+
+\section{RESULTADOS ESPERADOS}
+Espera-se produzir um notebook reproduzível, tabelas comparativas e gráficos que mostrem como o limiar altera os erros e as métricas dos dois classificadores. O êxito será definido pela execução reproduzível do protocolo e por uma discussão fundamentada das diferenças observadas, independentemente de qual algoritmo obter a maior pontuação.
+
+\section{RISCOS E LIMITAÇÕES}
+A amostra é relativamente pequena, utiliza um único conjunto público e não representa diversidade de contextos clínicos. A seleção de limiar por validação interna pode variar com as partições; portanto, os resultados não serão generalizados para prática médica. Se a MLP apresentar instabilidade, será adotada configuração previamente definida.
+
+\section{DECLARAÇÃO DE USO DE INTELIGÊNCIA ARTIFICIAL}
+O Hermes Agent, conectado à OpenRouter, foi utilizado para auxiliar na localização e triagem inicial de referências científicas. Ferramentas de IA também auxiliaram na revisão linguística, incluindo correção ortográfica, coesão gramatical e ajustes estilísticos, e o apoio à organização lógica dos argumentos, com atenção à integridade acadêmica e sob supervisão e revisão da autora. As sugestões incorporadas ao texto foram examinadas e revisadas pela autora, que assume integralmente a responsabilidade pelo conteúdo final, pelas escolhas metodológicas, pelos argumentos e pelas conclusões apresentados. Não foram compartilhadas informações inéditas, dados sensíveis ou conteúdos originais de terceiros com as plataformas utilizadas. Esses cuidados foram adotados visando ao respeito aos direitos autorais e à proteção de dados pessoais, considerando a Lei Geral de Proteção de Dados Pessoais (LGPD --- Lei nº 13.709/2018). Declaro que li e conferi pessoalmente as referências citadas neste documento, verificando sua identificação bibliográfica e a correspondência entre as afirmações e as fontes originais. 
+
+\clearpage
+\section*{REFERÊNCIAS}
+\begingroup\footnotesize\setlength{\parskip}{0pt}
+\noindent SRINIVASU, P. N. et al. XAI-driven CatBoost multi-layer perceptron neural network for analyzing breast cancer. \textit{Scientific Reports}, v. 14, art. 28674, 2024. DOI: 10.1038/s41598-024-79620-8.\\
+BAMODU, O. A.; NEZAM, S.; CHUNG, C.-C. Explainable machine learning for breast cancer prediction in resource-constrained settings. \textit{PLOS Digital Health}, v. 5, n. 9, e0001706, 2026. DOI: 10.1371/journal.pdig.0001706.\\
+PEDREGOSA, F. et al. Scikit-learn: Machine Learning in Python. \textit{JMLR}, v. 12, p. 2825--2830, 2011.\\
+SCIKIT-LEARN DEVELOPERS. \textit{Breast cancer Wisconsin (diagnostic) dataset}. Disponível em: \url{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html}. Acesso em: 22 out. 2026.
+
+\endgroup
+\end{document}
